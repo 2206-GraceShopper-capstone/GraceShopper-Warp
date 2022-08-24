@@ -79,9 +79,5 @@ router.delete('/:cartItemId', requireUser, async (req,res,next)=>{
         res.send(cartOrder)
       })
 
-// router.get('/', requireUser, async (req, res, next) => {
-   
-//     const cart = await getcartItem(req.user.id)   
-//     res.send({cart})
-// })
+
 module.exports = router;

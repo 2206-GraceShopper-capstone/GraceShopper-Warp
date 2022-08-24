@@ -1,5 +1,4 @@
 const client = require("./client");
-const {createCart} = require("./Cart")
 
 async function addProductToCart({
   productId,

@@ -1,5 +1,4 @@
 const client = require("./client");
-const { getMerchantByUsername } = require("./merchant");
 
 async function createProduct({
   creatorId,

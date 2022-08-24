@@ -115,7 +115,6 @@ async function getCartById(userId) {
       }
     }
 module.exports = {
-    createCart,
   getUserByUsername,
   getCartById,
   cartCheckout,

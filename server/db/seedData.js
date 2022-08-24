@@ -1,8 +1,8 @@
 const client = require("./client");
-const { createUser, getUserByUsername } = require("./users");
+const { createUser} = require("./users");
 const { createMerchant, getMerchantByUsername } = require("./merchant");
 const { createProduct, getAllProducts, getProductsByBrand } = require("./Product");
-const { createCart, getCart } = require("./Cart");
+const { createCart } = require("./Cart");
 const { addProductToCart } = require("./cartItem");
 
 async function dropTables() {
@@ -271,7 +271,7 @@ async function createInitialCart() {
       cartItemstoCreate.map(addProductToCart)
     );
   
-    console.log(cartItem, " I THINK I CREATED MY CART");
+    console.log(cartItem, "Cart Created");
   
     console.log("Finished creating CART");
   }
