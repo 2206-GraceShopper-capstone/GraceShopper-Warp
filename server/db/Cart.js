@@ -1,4 +1,3 @@
-const { attachProductsCart, attachProductscart } = require("./Product");
 const client = require("./client");
 const { getUserByUsername } = require("./users");
 
@@ -114,10 +113,29 @@ async function getCartById(userId) {
         throw error;
       }
     }
+
+
+    async function getCart() {
+      try {
+        const {
+          rows: cart,
+        } = await client.query(`
+        SELECT *
+        FROM Cart;
+        `);
+        // if (!cart) {
+        //   return await createCart();
+        // }
+   
+        return cart
+      } catch (error) {
+        throw error;
+      }}
 module.exports = {
   getUserByUsername,
   getCartById,
   cartCheckout,
   getOrderHistorybyId,
   getOrderHistory,
+  getCart
 };
