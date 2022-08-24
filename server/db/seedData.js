@@ -2,7 +2,7 @@ const client = require("./client");
 const { createUser} = require("./users");
 const { createMerchant, getMerchantByUsername } = require("./merchant");
 const { createProduct, getAllProducts, getProductsByBrand } = require("./Product");
-const { createCart } = require("./Cart");
+const { createCart,getCart } = require("./Cart");
 const { addProductToCart } = require("./cartItem");
 
 async function dropTables() {
@@ -124,6 +124,12 @@ async function createInitialMerchants() {
       brand: "Randy's Coffee",
       Admin: true,
     },
+    {
+      username: "garrett",
+      password: "123123123",
+      brand: "WarHawk",
+      Admin: true,
+    },
   ];
   const merchants = await Promise.all(
     merchantsToCreate.map((merchant) => createMerchant(merchant))
@@ -138,7 +144,6 @@ async function createInitialProducts() {
   const productsToCreate = [
     {
       creatorId: 1,
-      country: "Brazil",
       name: "Coffee#1",
       description: "coffee stuff description 1",
       price: 20,
@@ -150,7 +155,6 @@ async function createInitialProducts() {
     },
     {
       creatorId: 1,
-      country: "Vietnam",
       name: "Coffee#2",
       description: "coffee stuff description 2",
       price: 55,
@@ -162,7 +166,6 @@ async function createInitialProducts() {
     },
     {
       creatorId: 2,
-      country: "Colombia",
       name: "Coffee#3",
       description: "coffee stuff description 3",
       price: 15,
@@ -174,8 +177,6 @@ async function createInitialProducts() {
     },
     {
       creatorId: 3,
-     country: "Ethiopia",
-
       name: "Coffee#4",
       description: "coffee stuff description 4",
       price: 10,
@@ -187,9 +188,41 @@ async function createInitialProducts() {
     },
     {
       creatorId: 3,
-      country: "Vietnam",
       name: "Coffee#5",
       description: "coffee stuff description 5",
+      price: 15,
+      inventory: 15,
+      weight: 30,
+      roast: "Medium",
+      grind: "Whole Beans",
+      country: "Vietnam",
+    },
+    {
+      creatorId: 5,
+      name: "Chaos Incarnate",
+      description: "Dangerously Smooth Premium Blend. The dark harsh kick needed to tackle reality. May cause side affects.",
+      price: 50,
+      inventory: 50,
+      weight: 1,
+      roast: "Dark",
+      grind: "Instant",
+      country: "Colombia",
+    },
+    {
+      creatorId: 5,
+      name: "Emperor's Golden Throne",
+      description: "Start your day off with our Emperor's Approved blend.",
+      price: 10,
+      inventory: 2,
+      weight: 10,
+      roast: "Light",
+      grind: "Ground",
+       country: "Honduras",
+    },
+    {
+      creatorId: 5,
+      name: "Mundus Cruise",
+      description: "Run through daily problems over with this lighting charged coffee. ",
       price: 15,
       inventory: 15,
       weight: 30,

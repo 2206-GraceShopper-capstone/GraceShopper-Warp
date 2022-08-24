@@ -28,13 +28,9 @@ router.post('/:cartId/:productId', async (req,res)=>{
 
 router.patch('/:cartItemId', requireUser, async (req, res, next) => {
     const { cartItemId } = req.params;
-    console.log(cartItemId, "first check")
     const { quantity} = req.body;
-    console.log( quantity, "second check")
     const { username } = req.user
-    console.log(username, req.user.id, req.user, "Show me the database money")
     const updatedcartItem = await getcartItemByCartItemId(cartItemId)
-    console.log(updatedcartItem, "show me what updatedCartITem")
     try {
         if(!updatedcartItem) {
             res.status(403)
@@ -44,7 +40,6 @@ router.patch('/:cartItemId', requireUser, async (req, res, next) => {
             })
         } else {
             const upToDatecartItem = await editItemQuantity({ cartItemId, quantity});
-            console.log(upToDatecartItem, "Intiating SEND ITEM EDIT")
             res.send(upToDatecartItem)
         }
     } catch (error) {

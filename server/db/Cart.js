@@ -137,5 +137,6 @@ module.exports = {
   cartCheckout,
   getOrderHistorybyId,
   getOrderHistory,
-  getCart
+  getCart,
+  createCart
 };

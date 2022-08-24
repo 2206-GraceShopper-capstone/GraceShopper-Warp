@@ -29,9 +29,7 @@ const AddProductToCart = ({ productsList, setProductsList, productId, productPri
     if (token) {
       const getUser = await getUsersMe2(token);
       const getTheCart = await getAllCartsByUserId(token, getUser.id);
-      const getCartItems = await getCartItemsbyUserId(getUser.id);
-      console.log(getCartItems, "SOHW ME THE CART ITEMS");
-      console.log(getTheCart, "cart");
+     
       setSelectedCart(getTheCart);
     }
   }

@@ -116,7 +116,7 @@ console.log(guestCart, 'guest')
 
                 
 
-                <CartCheckout/>
+               
                 
 
             </div>
@@ -286,7 +286,8 @@ console.log(guestCart, 'guest')
                     type="submit"
                   >
                     Pay Now
-                  </button>
+                  </button> 
+                  <CartCheckout/>
                 </div>
               </form>
             </div>
