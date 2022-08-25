@@ -28,7 +28,9 @@ const AddProductToCart = ({ productsList, setProductsList, productId, productPri
     console.log("CREATING CART FOR USER");
     if (token) {
       const getUser = await getUsersMe2(token);
+      console.log(getUser, 'the user')
       const getTheCart = await getAllCartsByUserId(token, getUser.id);
+      console.log(getTheCart, "cart")
       const getCartItems = await getCartItemsbyUserId(getUser.id);
       console.log(getCartItems, "SOHW ME THE CART ITEMS");
       console.log(getTheCart, "cart");
