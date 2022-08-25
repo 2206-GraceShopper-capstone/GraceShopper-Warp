@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const jwt = require("jsonwebtoken");
+const { createCart } = require('../db/Cart');
 const { getProductsByMerchant } = require('../db/Product');
 const { getUserByUsername, createUser, getUser } = require('../db/users');
 const { JWT_SECRET } = process.env;
@@ -33,12 +34,19 @@ router.post("/register", async (req,res,next) => {
                 username, 
                 password
             })
+            const userId = user.id
+            const cart = await createCart({
+                userId
+                })
+                
+            
             if (user) {
                 const token = jwt.sign({
                     id: user.id,
                     username
                 }, JWT_SECRET)
-                res.send({message: "Thank you for signing up!", token, user})
+                res.send({message: "Thank you for signing up!", token, user, cart})
+               
             } else {
                 next({
                     name: 'UserCreationError',
@@ -68,6 +76,8 @@ router.post('/login', async (req,res,next)=> {
                 username
             }, JWT_SECRET)
             res.send({message: 'You are logged in!', token, user})
+            
+           
         } else {
             next({
                 name: 'IncorrectCredentialsError',
