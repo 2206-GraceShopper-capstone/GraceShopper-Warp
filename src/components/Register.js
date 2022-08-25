@@ -10,11 +10,8 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [error,setError] = useState(null)
    const [myResult, setMyResult] = useState(null)
-   const [confirmPassword,setConfirmPassword] = useState('')
    const navigate = useNavigate()
-    
-    const usernameRef = useRef();
-  
+      
     const handleSubmit = async (event) => {
       event.preventDefault()
       try {

@@ -1,5 +1,5 @@
-const BASE_URL = "https://fathomless-dawn-16080.herokuapp.com/api";
-// const BASE_URL = "http://localhost:3001/api";
+// const BASE_URL = "https://fathomless-dawn-16080.herokuapp.com/api";
+const BASE_URL = "http://localhost:3001/api";
 export const userLogin = async (username, password) => {
   try {
     const response = await fetch(`${BASE_URL}/users/login`, {
@@ -15,7 +15,6 @@ export const userLogin = async (username, password) => {
       }),
     });
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (error) {
     console.log(error);
@@ -34,23 +33,21 @@ export const registerUser = async (username, password) => {
     }),
   });
   const result = await response.json();
-  console.log(result);
+
   return result;
 };
 
 export const getProducts = async () => {
   try {
-    console.log("Hello");
     const response = await fetch(`${BASE_URL}/products`, {
       headers: {
         "Content-Type": "application/json",
       },
     });
     const result = await response.json();
-    console.log(result, "Get Products API CALL");
     return result;
   } catch (error) {
-    console.log(error, "Line 55");
+    console.log(error);
     throw error;
   }
 };
@@ -84,7 +81,7 @@ export const createNewProduct = async (
     }),
   });
   const result = await response.json();
-  console.log(result);
+
   return result;
 };
 
@@ -103,7 +100,7 @@ export const merchantLogin = async (username, password) => {
       }),
     });
     const result = await response.json();
-    console.log(result);
+
     return result;
   } catch (error) {
     console.log(error);
@@ -123,7 +120,7 @@ export const registerMerchant = async (username, password, brand) => {
     }),
   });
   const result = await response.json();
-  console.log(result);
+
   return result;
 };
 
@@ -146,7 +143,6 @@ export async function getProductsByAdmin(username) {
     },
   });
   const result = await response.json();
-  console.log(result, " this is getproductsbyadmin api ");
   return result;
 }
 
@@ -158,7 +154,6 @@ export async function getUsersMe(token) {
     },
   });
   const result = await response.json();
-  console.log(result, "merchant");
   return result;
 }
 export async function getUsersMe2(token) {
@@ -169,7 +164,6 @@ export async function getUsersMe2(token) {
     },
   });
   const result = await response.json();
-console.log(result, 'the result')
   return result;
 }
 
@@ -203,7 +197,7 @@ export async function updateProduct(
     }),
   });
   const result = await response.json();
-  console.log(result);
+
   return result;
 }
 
@@ -221,7 +215,7 @@ export async function addProductsToCart(productId, cartId, quantity, price) {
     }),
   });
   const result = await response.json();
-  console.log(result);
+
   return result;
 }
 
@@ -234,7 +228,6 @@ export const getAllCartsByUserId = async (token, userId) => {
       },
     });
     const result = await response.json();
-console.log(result, 'user id result')
     return result;
   } catch (error) {
     throw error;
@@ -258,21 +251,18 @@ export const getCartItemsbyUserId = async (userId) => {
 
 export const getProductsById = async (productId) => {
   try {
-    console.log("Hello");
     const response = await fetch(`${BASE_URL}/products/${productId}`, {
       headers: {
         "Content-Type": "application/json",
       },
     });
     const result = await response.json();
-    console.log(result, "Get Products API CALL");
     return result;
   } catch (error) {
-    console.log(error, "Line 55");
+    console.log(error);
     throw error;
   }
 };
-
 
 export const editCartItemsbyId = async (token, cartItemId, quantity) => {
   try {
@@ -288,16 +278,13 @@ export const editCartItemsbyId = async (token, cartItemId, quantity) => {
     });
 
     const result = await response.json();
-console.log(result, 'jjjjj')
     return result;
   } catch (error) {
     throw error;
   }
 };
 
-
 // ATTEMPTING TO CREATE API CALL TO REMOVE ITEMS FROM CART -MICHAEL
-
 
 export const removeCartItem = async (cartItemId, token) => {
   const response = await fetch(`${BASE_URL}/cartOrder/${cartItemId}`, {
@@ -308,12 +295,8 @@ export const removeCartItem = async (cartItemId, token) => {
     },
   });
   const result = await response.json();
-  console.log(result, 'delete')
   return result;
 };
-
-
-
 
 export const userCartCheckout = async (token, cartId) => {
   try {
@@ -323,7 +306,6 @@ export const userCartCheckout = async (token, cartId) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-
     });
 
     const result = await response.json();
@@ -343,7 +325,6 @@ export const getOrderHistorybyUserId = async (token, userId) => {
       },
     });
     const result = await response.json();
-console.log(result, 'user id result')
     return result;
   } catch (error) {
     throw error;
