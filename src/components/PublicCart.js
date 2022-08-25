@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { DeletePublicItem, PublicSum, UpdatePublicItem } from "./index";
-
 const PublicCart = ({ isLoggedIn }) => {
   const [guestCart, setGuestCart] = useState([]);
+
+ let navigate = useNavigate()
+ async function handleSubmit (){
+ navigate("/")
+ }
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -258,6 +263,7 @@ const PublicCart = ({ isLoggedIn }) => {
                   <button
                     className="rounded-lg bg-black text-sm p-2.5 text-white w-full block animate-bounce"
                     type="submit"
+                    onClick ={handleSubmit}
                   >
                     Pay Now
                   </button>
