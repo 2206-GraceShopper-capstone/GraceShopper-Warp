@@ -13,12 +13,8 @@ const OrderHistory = ({isLoggedIn}) => {
     const token = localStorage.getItem("token");
     if (token) {
       const getUser = await getUsersMe2(token);
-      console.log("order history User", getUser);
       const getCart = await getOrderHistorybyUserId(token, getUser.id);
-      console.log("order history got orders", getCart);
-      // const getCartItems = await getCartItemsbyUserId(getCart.id);
       setCart(getCart);
-      console.log("ORDER HISTORY", cart)
       }
     }
     

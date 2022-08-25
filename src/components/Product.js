@@ -1,41 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 import { AddProductToCart } from ".";
 import { getProducts } from "../apiAdapter";
 import "../input.css";
-import CreateProduct from "./CreateProduct";
-import DeleteProduct from "./DeleteProduct";
 
 const Products = ({ productsList, setProductsList, isLoggedIn, isAdmin }) => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate("/SingleProduct");
-  };
-  const [isShown, setIsShown] = useState(false);
-
-
-  async function btnClick() {
-    setIsShown((current) => !current);
-  }
   async function fetchAllProducts() {
     try {
-      console.log("line 23")
       const newproducts = await getProducts();
-      console.log(newproducts, "HeLLO SHOW ME 30");
 
       setProductsList(newproducts);
     } catch (error) {
       console.log(error);
-
     }
   }
 
   useEffect(() => {
-    // getProducts().then((results) => {
-    //     setProductsList(results)
-    // })
     fetchAllProducts();
   }, []);
 
@@ -58,22 +41,22 @@ const Products = ({ productsList, setProductsList, isLoggedIn, isAdmin }) => {
               <p className="text-center mt-1 text-xl font-medium text-gray-900 ">
                 ${element.price}
               </p>
-             <div className=" inline-flex text-center items-center w-full gap-14 text-clip">
-              <Link to='/SingleProduct'
-                state={{productId: element.id}}
-                className="container font-medium mt-2 px-4 py-1 border-zinc-900 border-solid border-2 rounded-md bg-orange-300 hover:bg-rose-900 hover:text-yellow-600 transition duration-500"
-              >
-                Details
-              </Link>
-              {!isAdmin ?
-
-              <AddProductToCart
-                productsList={productsList}
-                setProductsList={setProductsList}
-                productId={element.id}
-                productPrice={element.price}
-              />
-              : null }
+              <div className=" inline-flex text-center items-center w-full gap-14 text-clip">
+                <Link
+                  to="/SingleProduct"
+                  state={{ productId: element.id }}
+                  className="container font-medium mt-2 px-4 py-1 border-zinc-900 border-solid border-2 rounded-md bg-orange-300 hover:bg-rose-900 hover:text-yellow-600 transition duration-500"
+                >
+                  Details
+                </Link>
+                {!isAdmin ? (
+                  <AddProductToCart
+                    productsList={productsList}
+                    setProductsList={setProductsList}
+                    productId={element.id}
+                    productPrice={element.price}
+                  />
+                ) : null}
               </div>
             </div>
           ))}

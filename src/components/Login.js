@@ -1,7 +1,7 @@
 import { userLogin } from "../apiAdapter";
 import React, { useState } from "react";
 import { Link,useNavigate} from "react-router-dom";
-import { LockClosedIcon,UserIcon } from '@heroicons/react/solid';
+import { LockClosedIcon } from '@heroicons/react/solid';
 import '../input.css';
 
  const Login = ({setIsLoggedIn}) => {

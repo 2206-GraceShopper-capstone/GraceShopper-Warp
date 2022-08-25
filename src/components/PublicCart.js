@@ -1,75 +1,73 @@
-import React, {useEffect, useState} from 'react'
-import {DeletePublicItem, PublicSum, UpdatePublicItem} from './index';
+import React, { useEffect, useState } from "react";
+import { DeletePublicItem, PublicSum, UpdatePublicItem } from "./index";
 
+const PublicCart = ({ isLoggedIn }) => {
+  const [guestCart, setGuestCart] = useState([]);
 
-const PublicCart = ({isLoggedIn}) => {
+  useEffect(() => {
+    if (!isLoggedIn) {
+      console.log("start");
+      let prevItem = JSON.parse(localStorage.getItem("cart"));
+      console.log(prevItem, "item");
+      setGuestCart(prevItem);
+    }
+  }, []);
 
-    const [guestCart, setGuestCart] = useState([])
+  console.log(guestCart, "guest");
 
-    useEffect(() => {
-        if (!isLoggedIn) {
-          console.log('start')
-          let prevItem =  JSON.parse(localStorage.getItem('cart'))
-          console.log(prevItem, 'item')
-          setGuestCart(prevItem)
-        }
-        
-      }, []);
-
-  
-console.log(guestCart, 'guest')
-
-      const myCart = guestCart.map((cartItem) => {
-   
-
-        return(
-
-          <div key={cartItem.id} className=" select-none">
-          <div className="mt-12">
-            <div className="flow-root">
-              <ul className="-my-4 rounded-lg border-2 border-black shadow-xl ">
-                <li className="flex items-center justify-between py-4">
-                  <div className="flex items-start ">
-                    <img
-                      className="flex-shrink-0 object-cover w-16 h-16 rounded-lg shadow-lg "
-                      src={require("./Logo/coffeeBag.jpg")}
-                    />
-                    <div>
-                    <p className="text-md">
-                    <h1 className='font-semibold underline' >Name:</h1> {cartItem.name}
-                    
-                    
-            <h1 className='font-semibold underline'>Description:</h1> {cartItem.description}
-            </p>
-            </div>
-                    <div className="ml-4">
-                      <p className="text-md">
-                        {/* <ProductById productId={cartItem.productId} /> */}
-                      </p>
-                    </div>
-                  </div>
-                  <UpdatePublicItem cartItemId={cartItem.id} setGuestCart={setGuestCart} guestCart={guestCart} isLoggedIn={isLoggedIn}/>
+  const myCart = guestCart.map((cartItem) => {
+    return (
+      <div key={cartItem.id} className=" select-none">
+        <div className="mt-12">
+          <div className="flow-root">
+            <ul className="-my-4 rounded-lg border-2 border-black shadow-xl ">
+              <li className="flex items-center justify-between py-4">
+                <div className="flex items-start ">
+                  <img
+                    className="flex-shrink-0 object-cover w-16 h-16 rounded-lg shadow-lg "
+                    src={require("./Logo/coffeeBag.jpg")}
+                  />
                   <div>
-                    <p className="text-xl font-medium">
-                      ${cartItem.price} 
+                    <p className="text-md">
+                      <h1 className="font-semibold underline">Name:</h1>{" "}
+                      {cartItem.name}
+                      <h1 className="font-semibold underline">
+                        Description:
+                      </h1>{" "}
+                      {cartItem.description}
                     </p>
                   </div>
-                      
-                      <DeletePublicItem cartItemId={cartItem.id} setGuestCart={setGuestCart} guestCart={guestCart}/>
-                </li>
-              </ul>
-            </div>
+                  <div className="ml-4">
+                    <p className="text-md">
+                      {/* <ProductById productId={cartItem.productId} /> */}
+                    </p>
+                  </div>
+                </div>
+                <UpdatePublicItem
+                  cartItemId={cartItem.id}
+                  setGuestCart={setGuestCart}
+                  guestCart={guestCart}
+                  isLoggedIn={isLoggedIn}
+                />
+                <div>
+                  <p className="text-xl font-medium">${cartItem.price}</p>
+                </div>
 
+                <DeletePublicItem
+                  cartItemId={cartItem.id}
+                  setGuestCart={setGuestCart}
+                  guestCart={guestCart}
+                />
+              </li>
+            </ul>
           </div>
         </div>
-      );
-    });
+      </div>
+    );
+  });
 
-
-
-    return (
-        <section className=" flex shrink-0 justify-center items-center h-screen bg-gradient-to-t from-rose-300 to-yellow-600 ">
-
+  return (
+    <section className=" flex shrink-0 justify-center items-center h-screen bg-gradient-to-t from-rose-300 to-yellow-600 ">
       <div className="relative w-full max-w-screen-2xl shadow-2xl  ">
         <div className="grid grid-cols-1 md:grid-cols-2 ">
           <div className="py-12 bg-gray-100 bg-opacity-80 md:py-24 rounded-l-lg  ">
@@ -79,25 +77,19 @@ console.log(guestCart, 'guest')
                   src={require("../components/Logo/coffee.png")}
                   className="w-20 h-20 rounded-full"
                 />
-                  
+
                 <h2 className="ml-4 font-medium">Warp Coffee</h2>
               </div>
 
               <div className="mt-8">
-              <PublicSum guestCart={guestCart}/>
-                <p className="mt-1 text-lg text-black">
-                  For the purchase of  
-                </p>
-                
-              </div> 
-            {myCart}
-           
+                <PublicSum guestCart={guestCart} />
+                <p className="mt-1 text-lg text-black">For the purchase of</p>
+              </div>
+              {myCart}
 
-                {/* <Sum cartItems={cartItems}/>
+              {/* <Sum cartItems={cartItems}/>
 
                 <CartCheckout/> */}
-                
-
             </div>
           </div>
 
@@ -186,7 +178,10 @@ console.log(guestCart, 'guest')
 
                     <div className="flex -space-x-px">
                       <div className="flex-1">
-                        <label className="sr-only" htmlFor="card-expiration-date">
+                        <label
+                          className="sr-only"
+                          htmlFor="card-expiration-date"
+                        >
                           Expiration Date
                         </label>
 
@@ -274,8 +269,6 @@ console.log(guestCart, 'guest')
       </div>
     </section>
   );
+};
 
-    
-}
-
-export default PublicCart
+export default PublicCart;

@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Link,useNavigate} from "react-router-dom";
 import { LockClosedIcon } from '@heroicons/react/solid';
 import '../input.css';
-import Login from "./Login";
 
  const MerchantLogin = ({setIsLoggedIn,setIsAdmin}) => {
     const [username, setUsername] = useState("");
@@ -15,7 +14,6 @@ import Login from "./Login";
       try {
         event.preventDefault();
         const result = await merchantLogin(username, password);
-        console.log(result)
         const token =result.token
         
         if(result.error){

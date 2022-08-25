@@ -5,10 +5,8 @@ import { Link } from 'react-router-dom'
 
 
 
- const MerchantProducts  = ({productsList, setProductsList}) => {
+ const MerchantProducts  = () => {
 const [myProducts, setMyProducts] = useState([])
-const [isShown2, setIsShown2] = useState(false)
-// const [brand, setBrand] = useState('')
 const brand = localStorage.getItem('brand')
 async function fetchMyProducts() {
   
@@ -17,33 +15,15 @@ async function fetchMyProducts() {
   const user = await getUsersMe(token)
   if (user.username === username) {
     const allMyProducts = await getProductsByAdmin(username)
-    console.log(allMyProducts,"Show me the products line 17")
     setMyProducts(allMyProducts)
     
   }
 }
-async function buttonClick2() {
-  setIsShown2((current) => !current);
-}
+
 
 useEffect(() => {
   fetchMyProducts()
 }, []);
-
-// const showMyProducts = myProducts.map((product, index) => {
-//   return (
-//     <div key={index} className=''>
-//       <h1> {product.name}</h1>
-//       <DeleteProduct myProducts={myProducts} setMyProducts={setMyProducts} productId={product.id}/>
-//       <button onClick={buttonClick2}>EDIT PRODUCT</button>
-//                   {isShown2 && (
-//                     <UpdateProducts
-//                     myProducts={myProducts} setMyProducts={setMyProducts} productId={product.id}
-//                     />
-//                   )}
-//     </div>
-//   )
-// })
 
   return (
     <div className="bg-gradient-to-t from-rose-300 to-yellow-600 h-screen flex flex-col justify-center items-center select-none">
